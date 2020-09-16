@@ -10,7 +10,7 @@ namespace Sort
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[100];
+            int[] arr = new int[10];
             Random r = new Random();
             for(int i = 0;i < arr.Length; i++)
             {
@@ -18,8 +18,13 @@ namespace Sort
             }
             var watch = new System.Diagnostics.Stopwatch();
             watch.Start();
-            MergeSort(arr, 0, arr.Length - 1);        
+            //MergeSort(arr, 0, arr.Length - 1);    
+            SelectedSort(arr);
             watch.Stop();
+            foreach(var item in arr)
+            {
+                Console.WriteLine(item);
+            }
             Console.WriteLine("Time: {0}", watch.ElapsedMilliseconds);
             Console.ReadKey();
         }
@@ -73,6 +78,21 @@ namespace Sort
             {
                 arr[i] = tmp[k];
                 i++;
+            }
+        }
+        public static void SelectedSort(int[] arr)
+        {
+            for(int i =0; i < arr.Length - 1; i++)
+            {
+                for(int j = i + 1; j < arr.Length; j++)
+                {
+                    if(arr[i] > arr[j])
+                    {
+                        int tmp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = tmp;
+                    }
+                }
             }
         }
     }
